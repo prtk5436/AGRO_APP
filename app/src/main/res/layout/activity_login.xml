@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login.LoginActivity">
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/wave_header"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/wave_footer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:scalez="-1"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:fontFamily="cursive"
+        android:layout_above="@+id/crd"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crd"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter your Username" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+
+
+                >
+
+                <EditText
+
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter your Password"
+                    android:inputType="textPassword"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:layout_below="@+id/crd"
+        android:id="@+id/login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/greenbuttonround"
+        android:layout_width="wrap_content"
+        android:text="Login"
+        android:layout_height="wrap_content"
+
+        />
+    <TextView
+        android:id="@+id/txt_forgot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forgot password?(click Here)"
+        android:layout_below="@+id/login"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"/>
+    <TextView
+        android:id="@+id/txt_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New User?(click Here)"
+        android:onClick="onSignup"
+        android:layout_below="@+id/txt_forgot"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"/>
+
+</RelativeLayout>

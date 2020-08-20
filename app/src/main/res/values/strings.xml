@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AGRO APP</string>
+    <array name="countrycode">
+        <item>please select </item>
+        <item>+91</item>
+    </array>
+</resources>
