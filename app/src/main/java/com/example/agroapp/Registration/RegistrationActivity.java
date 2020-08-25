@@ -98,7 +98,7 @@ public class RegistrationActivity extends AppCompatActivity {
         i.setFullName(full_name.getText().toString());
         i.setUsername(username.getText().toString());
         i.setPassword(pass.getText().toString());
-        i.setCountryCode(str_cc);
+        i.setCountryCode("+91");
         i.setPhone(phone.getText().toString());
         i.setEmail(email.getText().toString());
         i.setTaluka(address2.getText().toString());
@@ -130,10 +130,10 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
-
+    public void onCancel(View view) {
+        startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
+        finish();
+    }
 }

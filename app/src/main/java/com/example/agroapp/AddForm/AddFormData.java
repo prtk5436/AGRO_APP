@@ -1,4 +1,4 @@
-package com.example.agroapp;
+package com.example.agroapp.AddForm;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +25,23 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.agroapp.Api.ApiClient;
+import com.example.agroapp.Api.AuthenticationApi;
+import com.example.agroapp.R;
+import com.example.agroapp.Registration.RegistartionInput;
+import com.example.agroapp.Registration.RegistrationActivity;
+import com.example.agroapp.Registration.RegistrationOutput;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddFormData extends AppCompatActivity {
     ImageView cropPRV,soilPRV,cropIcon,soilIcon;
@@ -250,16 +261,6 @@ public class AddFormData extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
-
     private void galleryIntent(int i) {
         if (i==1)
         {
@@ -325,8 +326,7 @@ public class AddFormData extends AppCompatActivity {
                 }
             }
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+            e.printStackTrace(); }
         return false;
     }
 
@@ -345,6 +345,52 @@ public class AddFormData extends AppCompatActivity {
         } else {
             requestPermission();
         }
+
+    }
+
+    public void onSubmit(View view) {
+        AuthenticationApi api= ApiClient.getClient().create(AuthenticationApi.class);
+        AddFormDataInput i=new AddFormDataInput();
+        i.setOperation("");
+        i.setApiKey("");
+        i.setGiolocation("");
+        i.setTime("");
+        i.setCropImage("");
+        i.setSoilImage("");
+        i.setSessionalCondition("");
+        i.setIrrigationType("");
+        i.setSoilType("");
+        i.setTypeOfCrop("");
+        i.setGrouthDuration("");
+        i.setArea("");
+        i.setVillage("");
+        i.setTaluka("");
+        i.setDistrict("");
+        i.setState("");
+        i.setUserId("");
+        Call<AddFormDatatOutput> call=api.sendData(i);
+        call.enqueue(new Callback<AddFormDatatOutput>() {
+            @Override
+            public void onResponse(Call<AddFormDatatOutput> call, Response<AddFormDatatOutput> response) {
+                if (response.body()!=null){
+                    if (response.body().getResponseStatus()==200){
+                        Toast.makeText(AddFormData.this,"Data Uploded Sucessfully .  "+response.body().getResponseMessage().toString(),Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(AddFormData.this,response.body().getResponseMessage().toString(),Toast.LENGTH_LONG).show();
+
+                    }
+                }else {
+                    Toast.makeText(AddFormData.this,"Server Error!!!!!!!"+response.body().getResponseMessage().toString(),Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddFormDatatOutput> call, Throwable t) {
+
+            }
+        });
 
     }
 }

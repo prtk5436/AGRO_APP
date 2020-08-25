@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/blue"
     android:orientation="vertical"
-    tools:context=".AddFormData">
+    tools:context=".AddForm.AddFormData">
 
 
     <androidx.cardview.widget.CardView
@@ -369,11 +369,12 @@
                 android:layout_weight="0.5"/>
         </LinearLayout>
         <Button
+            android:id="@+id/btn_submit"
+            android:onClick="onSubmit"
             android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Submit info"
-
             android:layout_marginBottom="40dp"
             android:background="@drawable/greenbuttonround"
             android:shadowColor="@android:color/black"/>

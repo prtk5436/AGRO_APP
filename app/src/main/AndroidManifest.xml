@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddFormData" />
+        <activity android:name=".AddForm.AddFormData" />
     </application>
 
 </manifest>

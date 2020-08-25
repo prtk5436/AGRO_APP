@@ -118,6 +118,7 @@
                     android:textSize="20sp" />
 
                 <Spinner
+                    android:visibility="gone"
                     android:id="@+id/country_code"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -212,7 +213,7 @@
                     android:background="@drawable/round"
                     android:ems="10"
                     android:hint="District"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:paddingLeft="10dp"
                     android:textColor="#3F51B5"
                     android:textSize="20sp" />
@@ -245,7 +246,7 @@
                     android:ems="10"
 
                     android:hint="Country"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:paddingLeft="10dp"
                     android:textColor="#3F51B5"
                     android:textSize="20sp" />
@@ -262,7 +263,7 @@
                     android:background="@drawable/round"
                     android:ems="10"
                     android:hint="  Pincode"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:paddingLeft="10dp"
                     android:textColor="#3F51B5"
                     android:textSize="20sp" />
@@ -322,6 +323,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="1"
+                        android:onClick="onCancel"
                         android:text="Cancel" />
                 </LinearLayout>
 

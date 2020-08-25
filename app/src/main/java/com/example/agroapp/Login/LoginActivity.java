@@ -10,9 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.agroapp.AddFormData;
+import com.example.agroapp.AddForm.AddFormData;
 import com.example.agroapp.Api.ApiClient;
 import com.example.agroapp.Api.AuthenticationApi;
 import com.example.agroapp.R;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtUsername,edtPassword;
     String username,password;
     Button login;
+    TextView txt_signup;
     private String isLoggedIn = "false";
     public static final String mobileNumber = "mobileNumber";
     public static final String pwd = "password";
@@ -57,6 +59,14 @@ public class LoginActivity extends AppCompatActivity {
                 Login();
             }
         });
+        txt_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,RegistrationActivity.class));
+                finish();
+            }
+        });
+
 
 
     }
@@ -129,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
         edtUsername=findViewById(R.id.edt_username);
         edtPassword=findViewById(R.id.edt_password);
         login=findViewById(R.id.login);
+        txt_signup=findViewById(R.id.txt_signup);
 
 
     }
