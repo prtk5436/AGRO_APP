@@ -22,6 +22,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddFormData extends AppCompatActivity {
+    EditText edt_seasonal,edt_irrigation,edt_soil,edt_growthdur,edt_area,edt_village,edt_tal,edt_dist,edt_state,edt_corptype;
+    String season,irrigation,soil,growthdur,area,village,taluka,district,state,croptype;
     ImageView cropPRV,soilPRV,cropIcon,soilIcon;
     Bitmap bm,bm1;
     private static final int PERMISSION_REQUEST_CODE = 1;
@@ -312,6 +315,17 @@ public class AddFormData extends AppCompatActivity {
         soilIcon=findViewById(R.id.soil_icon);
         soilPRV=findViewById(R.id.imgPRV_soil);
         cropIcon=findViewById(R.id.crop_icon);
+        edt_area=findViewById(R.id.edt_croparea);
+        edt_dist=findViewById(R.id.edt_district);
+        edt_growthdur=findViewById(R.id.growthdur);
+        edt_irrigation=findViewById(R.id.edt_irrigation);
+        edt_soil=findViewById(R.id.edt_soiltype);
+        edt_seasonal=findViewById(R.id.edt_season);
+        edt_tal=findViewById(R.id.edt_taluka);
+        edt_corptype=findViewById(R.id.edt_corptype);
+        edt_village=findViewById(R.id.edt_village);
+        edt_state=findViewById(R.id.state);
+
     }
     public boolean hasPermissionInManifest(Context context, String permissionName) {
         final String packageName = context.getPackageName();
@@ -349,24 +363,42 @@ public class AddFormData extends AppCompatActivity {
     }
 
     public void onSubmit(View view) {
+         season=edt_seasonal.getText().toString();
+         irrigation=edt_irrigation.getText().toString();
+         soil=edt_soil.getText().toString();
+         growthdur=edt_growthdur.getText().toString();
+         area=edt_area.getText().toString();
+         village=edt_village.getText().toString();
+         taluka=edt_tal.getText().toString();
+         district=edt_dist.getText().toString();
+         state=edt_state.getText().toString();
+                croptype=edt_corptype.getText().toString();
+        submitdata();
+
+
+    }
+
+    private void submitdata() {
         AuthenticationApi api= ApiClient.getClient().create(AuthenticationApi.class);
         AddFormDataInput i=new AddFormDataInput();
-        i.setOperation("");
-        i.setApiKey("");
+        i.setOperation("form_data_added");
+        i.setApiKey("cda11aoip2Ry07CGWmjEqYvPguMZTkBel1V8c3XKIxwA6zQt5s");
         i.setGiolocation("");
         i.setTime("");
+        String cropimg=getBase64(bm);
         i.setCropImage("");
+        String soilimg=getBase64(bm1);
         i.setSoilImage("");
-        i.setSessionalCondition("");
-        i.setIrrigationType("");
-        i.setSoilType("");
-        i.setTypeOfCrop("");
-        i.setGrouthDuration("");
-        i.setArea("");
-        i.setVillage("");
-        i.setTaluka("");
-        i.setDistrict("");
-        i.setState("");
+        i.setSessionalCondition(season);
+        i.setIrrigationType(irrigation);
+        i.setSoilType(soil);
+        i.setTypeOfCrop(croptype);
+        i.setGrouthDuration(growthdur);
+        i.setArea(area);
+        i.setVillage(village);
+        i.setTaluka(taluka);
+        i.setDistrict(district);
+        i.setState(state);
         i.setUserId("");
         Call<AddFormDatatOutput> call=api.sendData(i);
         call.enqueue(new Callback<AddFormDatatOutput>() {
@@ -391,6 +423,5 @@ public class AddFormData extends AppCompatActivity {
 
             }
         });
-
     }
 }

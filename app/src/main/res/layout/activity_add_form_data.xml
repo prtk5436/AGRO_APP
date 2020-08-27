@@ -156,40 +156,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="sessional condition:"
-                android:textColor="@android:color/black"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                />
-            <EditText
-                android:layout_marginLeft="8dp"
-
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edt_season"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Seasonal Conditions" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Irrigation Type:"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                />
-            <EditText
-                android:layout_marginLeft="8dp"
-
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edt_irrigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Irrigation Type" />
+            </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:visibility="gone"
                 android:layout_width="wrap_content"
@@ -203,7 +195,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edt_soiltype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Soil Type:" />
+            </com.google.android.material.textfield.TextInputLayout>
             <TextView
+
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Soil Type:"
@@ -212,6 +216,7 @@
                 android:textStyle="bold"
                 />
             <EditText
+                android:visibility="gone"
                 android:layout_marginLeft="8dp"
 
                 android:layout_width="match_parent"
@@ -229,6 +234,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Type of Crop:"
@@ -237,10 +243,20 @@
                 android:textStyle="bold"
                 /><EditText
             android:layout_marginLeft="8dp"
-
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edt_corptype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Corp Type" />
+            </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:visibility="gone"
                 android:layout_width="wrap_content"
@@ -253,6 +269,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Growth Duration:"
@@ -261,11 +278,22 @@
                 android:textStyle="bold"
                 />
             <EditText
+                android:visibility="gone"
                 android:layout_marginLeft="8dp"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/growthdur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Growth Duration" />
+            </com.google.android.material.textfield.TextInputLayout>
             <Spinner
                 android:visibility="gone"
                 android:layout_width="wrap_content"
@@ -278,6 +306,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Area of crop:"
@@ -286,11 +315,22 @@
                 android:textStyle="bold"
                 />
             <EditText
+                android:visibility="gone"
                 android:hint=" please eneter area of crop"
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edt_croparea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Crop Area" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -298,6 +338,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
             <TextView
+                android:visibility="gone"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Village:"
@@ -305,7 +347,18 @@
                 android:textSize="18dp"
                 android:textStyle="bold"
                 />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edt_village"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Village" />
+            </com.google.android.material.textfield.TextInputLayout>
             <EditText
+                android:visibility="gone"
                 android:hint="Please Enter your village name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -317,6 +370,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Taluka:"
@@ -325,10 +379,22 @@
                 android:textStyle="bold"
                 />
             <EditText
+                android:visibility="gone"
                 android:hint="Please enter your taluka name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edt_taluka"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Taluka" />
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -336,6 +402,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="District"
@@ -344,11 +411,21 @@
                 android:textStyle="bold"
                 />
             <EditText
+                android:visibility="gone"
                 android:hint="Please enter district name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <EditText
+                    android:id="@+id/edt_district"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="District" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -356,6 +433,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="State (please select):"
@@ -364,9 +442,20 @@
                 android:textStyle="bold"
                 />
             <Spinner
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edt_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="State" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
         <Button
             android:id="@+id/btn_submit"
@@ -382,5 +471,7 @@
 </androidx.cardview.widget.CardView>
 
     </ScrollView>
+
+
 
 </LinearLayout>
