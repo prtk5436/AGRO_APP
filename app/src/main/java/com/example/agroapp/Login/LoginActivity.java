@@ -16,9 +16,12 @@ import android.widget.Toast;
 import com.example.agroapp.AddForm.AddFormData;
 import com.example.agroapp.Api.ApiClient;
 import com.example.agroapp.Api.AuthenticationApi;
+import com.example.agroapp.Api.FeatureController;
 import com.example.agroapp.R;
 import com.example.agroapp.Registration.RegistrationActivity;
 import com.scwang.wave.MultiWaveHeader;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtUsername,edtPassword;
     String username,password;
     Button login;
+    FeatureController featureController;
     TextView txt_signup;
     private String isLoggedIn = "false";
     public static final String mobileNumber = "mobileNumber";
@@ -87,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.body()!=null){
                     if (response.body().getResponseStatus()==200){
                     userDetail=response.body().getUserDetails().get(0);
+                    FeatureController.getInstance().setUserdetails(userDetail);
 
                         startActivity(new Intent(LoginActivity.this, AddFormData.class));
                         finish();

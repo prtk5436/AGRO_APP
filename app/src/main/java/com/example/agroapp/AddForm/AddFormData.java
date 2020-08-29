@@ -28,6 +28,8 @@ import android.widget.Toast;
 
 import com.example.agroapp.Api.ApiClient;
 import com.example.agroapp.Api.AuthenticationApi;
+import com.example.agroapp.Api.FeatureController;
+import com.example.agroapp.Login.UserDetail;
 import com.example.agroapp.R;
 import com.example.agroapp.Registration.RegistartionInput;
 import com.example.agroapp.Registration.RegistrationActivity;
@@ -49,12 +51,18 @@ public class AddFormData extends AppCompatActivity {
     String season,irrigation,soil,growthdur,area,village,taluka,district,state,croptype;
     ImageView cropPRV,soilPRV,cropIcon,soilIcon;
     Bitmap bm,bm1;
+    FeatureController featureController;
     private static final int PERMISSION_REQUEST_CODE = 1;
     private String userChoosenTask;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 102;
     String base64String = "";
     private static final int REQUEST_CAMERA = 0;
     byte[] bb = null;
+    String userid;
+    UserDetail userDetail;
+
+
+
 
 
 
@@ -324,7 +332,7 @@ public class AddFormData extends AppCompatActivity {
         edt_tal=findViewById(R.id.edt_taluka);
         edt_corptype=findViewById(R.id.edt_corptype);
         edt_village=findViewById(R.id.edt_village);
-        edt_state=findViewById(R.id.state);
+        edt_state=findViewById(R.id.edt_state);
 
     }
     public boolean hasPermissionInManifest(Context context, String permissionName) {
@@ -373,6 +381,7 @@ public class AddFormData extends AppCompatActivity {
          district=edt_dist.getText().toString();
          state=edt_state.getText().toString();
                 croptype=edt_corptype.getText().toString();
+                userid=FeatureController.getInstance().getUserDetail().get(0).getId();
         submitdata();
 
 
@@ -386,9 +395,9 @@ public class AddFormData extends AppCompatActivity {
         i.setGiolocation("");
         i.setTime("");
         String cropimg=getBase64(bm);
-        i.setCropImage("");
+        i.setCropImage(cropimg);
         String soilimg=getBase64(bm1);
-        i.setSoilImage("");
+        i.setSoilImage(soilimg);
         i.setSessionalCondition(season);
         i.setIrrigationType(irrigation);
         i.setSoilType(soil);
@@ -399,7 +408,7 @@ public class AddFormData extends AppCompatActivity {
         i.setTaluka(taluka);
         i.setDistrict(district);
         i.setState(state);
-        i.setUserId("");
+        i.setUserId(userid);
         Call<AddFormDatatOutput> call=api.sendData(i);
         call.enqueue(new Callback<AddFormDatatOutput>() {
             @Override
