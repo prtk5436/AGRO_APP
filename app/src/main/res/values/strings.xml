@@ -19,7 +19,7 @@
     <string name="user_registration">User Registration</string>
     <string name="login">Login</string>
     <array name="countrycode">
-        <item>please select </item>
+        <item>please select</item>
         <item>+91</item>
     </array>
 </resources>
