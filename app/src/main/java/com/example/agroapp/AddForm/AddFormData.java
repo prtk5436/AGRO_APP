@@ -332,7 +332,7 @@ public class AddFormData extends AppCompatActivity {
         edt_tal=findViewById(R.id.edt_taluka);
         edt_corptype=findViewById(R.id.edt_corptype);
         edt_village=findViewById(R.id.edt_village);
-        edt_state=findViewById(R.id.edt_state);
+        edt_state=findViewById(R.id.edt_state );
 
     }
     public boolean hasPermissionInManifest(Context context, String permissionName) {

@@ -28,7 +28,7 @@ public class RegistrationActivity extends AppCompatActivity {
     Spinner cc;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void   onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         init();
