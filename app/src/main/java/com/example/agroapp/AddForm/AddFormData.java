@@ -378,7 +378,7 @@ public class AddFormData extends AppCompatActivity {
          district=edt_dist.getText().toString();
          state=edt_state.getText().toString();
                 croptype=edt_corptype.getText().toString();
-                userid= FeatureController.getInstance().getUserDetail().get(0).getId();
+
         submitdata();
 
 
@@ -405,7 +405,7 @@ public class AddFormData extends AppCompatActivity {
         i.setTaluka(taluka);
         i.setDistrict(district);
         i.setState(state);
-        i.setUserId(userid);
+        i.setUserId(FeatureController.getInstance().getUid().toString());
         Call<AddFormDatatOutput> call=api.sendData(i);
         call.enqueue(new Callback<AddFormDatatOutput>() {
             @Override
@@ -416,11 +416,9 @@ public class AddFormData extends AppCompatActivity {
                     }
                     else {
                         Toast.makeText(AddFormData.this,response.body().getResponseMessage().toString(),Toast.LENGTH_LONG).show();
-
                     }
                 }else {
                     Toast.makeText(AddFormData.this,"Server Error!!!!!!!"+response.body().getResponseMessage().toString(),Toast.LENGTH_LONG).show();
-
                 }
             }
 

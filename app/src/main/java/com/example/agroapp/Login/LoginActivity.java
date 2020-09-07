@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.body() != null) {
                     if (response.body().getResponseStatus() == 200) {
                         userDetail = response.body().getUserDetails().get(0);
-                        FeatureController.getInstance().setUserdetails(userDetail);
+                        FeatureController.getInstance().setUid(userDetail.getId());
                         startActivity(new Intent(LoginActivity.this, AddFormData.class));
                         finish();
                     } else {
