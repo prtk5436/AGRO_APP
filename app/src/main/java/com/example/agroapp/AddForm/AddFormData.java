@@ -1,10 +1,5 @@
 package com.example.agroapp.AddForm;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,14 +21,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.agroapp.Api.ApiClient;
 import com.example.agroapp.Api.AuthenticationApi;
 import com.example.agroapp.Api.FeatureController;
 import com.example.agroapp.Login.UserDetail;
 import com.example.agroapp.R;
-import com.example.agroapp.Registration.RegistartionInput;
-import com.example.agroapp.Registration.RegistrationActivity;
-import com.example.agroapp.Registration.RegistrationOutput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -332,7 +329,7 @@ public class AddFormData extends AppCompatActivity {
         edt_tal=findViewById(R.id.edt_taluka);
         edt_corptype=findViewById(R.id.edt_corptype);
         edt_village=findViewById(R.id.edt_village);
-        edt_state=findViewById(R.id.edt_state );
+        edt_state=findViewById(R.id.edt_state);
 
     }
     public boolean hasPermissionInManifest(Context context, String permissionName) {
@@ -381,7 +378,7 @@ public class AddFormData extends AppCompatActivity {
          district=edt_dist.getText().toString();
          state=edt_state.getText().toString();
                 croptype=edt_corptype.getText().toString();
-                userid=FeatureController.getInstance().getUserDetail().get(0).getId();
+                userid= FeatureController.getInstance().getUserDetail().get(0).getId();
         submitdata();
 
 

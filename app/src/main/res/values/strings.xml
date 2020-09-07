@@ -1,7 +1,25 @@
 <resources>
     <string name="app_name">AGRO APP</string>
+    <string name="back">back</string>
+    <string name="submit">Submit</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="pincode">Pincode</string>
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="district">District</string>
+    <string name="taluka">Taluka</string>
+    <string name="village">Village</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="full_name">Full name</string>
+    <string name="user_name">User Name</string>
+    <string name="user_registration">User Registration</string>
+    <string name="login">Login</string>
     <array name="countrycode">
-        <item>please select </item>
+        <item>please select</item>
         <item>+91</item>
     </array>
 </resources>
