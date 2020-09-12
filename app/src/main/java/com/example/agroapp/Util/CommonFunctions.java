@@ -40,11 +40,11 @@ public class CommonFunctions {
         i.setWebmethodName(WebmethodName);
         i.setProgErrMsg(progErrMsg);
         i.setSchoolId(schoolID);
+
         Log.d(TAG, "errorLog() called with: appname = [" + appname + "], error_type = [" + error_type + "], error_desc = [" + error_desc + "], data = [" + data + "], UserType = [" + UserType + "], MemberId = [" + MemberId + "], name = [" + name + "], Phone = [" + Phone + "], email = [" + email + "], status = [" + status + "], LastProgName = [" + LastProgName + "], webServiceName = [" + webServiceName + "], WebmethodName = [" + WebmethodName + "], progErrMsg = [" + progErrMsg + "], schoolID = [" + schoolID + "]");
-
         Log.d(TAG, "errorLog: i =  " + i);
-        Call<ErrorLogOutput> call = authenticationApi.getErrorLog(i);
 
+        Call<ErrorLogOutput> call = authenticationApi.getErrorLog(i);
         Log.d(TAG, "errorLog: call =  " + call);
         call.enqueue(new Callback<ErrorLogOutput>() {
             @Override
