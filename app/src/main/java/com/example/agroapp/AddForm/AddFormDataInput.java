@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class AddFormDataInput {
     @SerializedName("operation")
     @Expose
-private String operation;
+    private String operation;
     @SerializedName("api_key")
     @Expose
     private String apiKey;

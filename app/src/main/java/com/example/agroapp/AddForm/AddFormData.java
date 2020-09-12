@@ -1,10 +1,5 @@
 package com.example.agroapp.AddForm;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,14 +21,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.agroapp.Api.ApiClient;
 import com.example.agroapp.Api.AuthenticationApi;
 import com.example.agroapp.Api.FeatureController;
 import com.example.agroapp.Login.UserDetail;
 import com.example.agroapp.R;
-import com.example.agroapp.Registration.RegistartionInput;
-import com.example.agroapp.Registration.RegistrationActivity;
-import com.example.agroapp.Registration.RegistrationOutput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -47,24 +44,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddFormData extends AppCompatActivity {
-    EditText edt_seasonal,edt_irrigation,edt_soil,edt_growthdur,edt_area,edt_village,edt_tal,edt_dist,edt_state,edt_corptype;
-    String season,irrigation,soil,growthdur,area,village,taluka,district,state,croptype;
-    ImageView cropPRV,soilPRV,cropIcon,soilIcon;
-    Bitmap bm,bm1;
-    FeatureController featureController;
     private static final int PERMISSION_REQUEST_CODE = 1;
-    private String userChoosenTask;
-    final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 102;
-    String base64String = "";
     private static final int REQUEST_CAMERA = 0;
+    final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 102;
+    EditText edt_seasonal, edt_irrigation, edt_soil, edt_growthdur, edt_area, edt_village, edt_tal, edt_dist, edt_state, edt_corptype;
+    String season, irrigation, soil, growthdur, area, village, taluka, district, state, croptype;
+    ImageView cropPRV, soilPRV, cropIcon, soilIcon;
+    Bitmap bm, bm1;
+    FeatureController featureController;
+    String base64String = "";
     byte[] bb = null;
     String userid;
     UserDetail userDetail;
-
-
-
-
-
+    private String userChoosenTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,15 +77,15 @@ public class AddFormData extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int item) {
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";
-                    if (i==1)
+                    if (i == 1)
                         cameraIntent(1);
-                    else if (i==2)
+                    else if (i == 2)
                         cameraIntent(2);
                 } else if (items[item].equals("Choose from Library")) {
                     userChoosenTask = "Choose from Library";
-                    if (i==1)
+                    if (i == 1)
                         galleryIntent(1);
-                    if (i==2)
+                    if (i == 2)
                         galleryIntent(2);
 
                 } else if (items[item].equals("Cancel")) {
@@ -110,26 +102,24 @@ public class AddFormData extends AppCompatActivity {
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 2)
-                onSelectFromGalleryResult1(data,2);
-            else if (requestCode==1)
-                onSelectFromGalleryResult(data,1);
-            else  if (requestCode==3)
-                onCaptureImageResult(data,3);
-            else  if (requestCode==4)
-                onCaptureImageResult1(data,4);
+                onSelectFromGalleryResult1(data, 2);
+            else if (requestCode == 1)
+                onSelectFromGalleryResult(data, 1);
+            else if (requestCode == 3)
+                onCaptureImageResult(data, 3);
+            else if (requestCode == 4)
+                onCaptureImageResult1(data, 4);
 
             //   else if (requestCode == 1)
             //     onCaptureImageResult(data);
         }
     }
+
     private boolean checkExtPermission() {
         int result = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
-        }
+        return result == PackageManager.PERMISSION_GRANTED;
     }
+
     private void onCaptureImageResult1(Intent data, int i) {
 
         Bitmap bm1 = (Bitmap) data.getExtras().get("data");
@@ -273,13 +263,11 @@ public class AddFormData extends AppCompatActivity {
     }
 
     private void galleryIntent(int i) {
-        if (i==1)
-        {
+        if (i == 1) {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(intent, 1);
         }
-        if (i==2)
-        {
+        if (i == 2) {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(intent, 2);
         }
@@ -287,13 +275,11 @@ public class AddFormData extends AppCompatActivity {
     }
 
     private void cameraIntent(int i) {
-        if (i==1)
-        {
+        if (i == 1) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             hasPermissionInManifest(this, MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, 3);
-        }
-        else if (i==2){
+        } else if (i == 2) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             hasPermissionInManifest(this, MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, 4);
@@ -303,12 +289,9 @@ public class AddFormData extends AppCompatActivity {
 
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
-        }
+        return result == PackageManager.PERMISSION_GRANTED;
     }
+
     private void requestPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
             Toast.makeText(getApplicationContext(), "To access Camera permission, Please allow in App Settings for camera functionality.", Toast.LENGTH_LONG).show();
@@ -319,22 +302,23 @@ public class AddFormData extends AppCompatActivity {
 
 
     private void init() {
-        cropPRV=findViewById(R.id.imgPRV_crop);
-        soilIcon=findViewById(R.id.soil_icon);
-        soilPRV=findViewById(R.id.imgPRV_soil);
-        cropIcon=findViewById(R.id.crop_icon);
-        edt_area=findViewById(R.id.edt_croparea);
-        edt_dist=findViewById(R.id.edt_district);
-        edt_growthdur=findViewById(R.id.growthdur);
-        edt_irrigation=findViewById(R.id.edt_irrigation);
-        edt_soil=findViewById(R.id.edt_soiltype);
-        edt_seasonal=findViewById(R.id.edt_season);
-        edt_tal=findViewById(R.id.edt_taluka);
-        edt_corptype=findViewById(R.id.edt_corptype);
-        edt_village=findViewById(R.id.edt_village);
-        edt_state=findViewById(R.id.edt_state);
+        cropPRV = findViewById(R.id.imgPRV_crop);
+        soilIcon = findViewById(R.id.soil_icon);
+        soilPRV = findViewById(R.id.imgPRV_soil);
+        cropIcon = findViewById(R.id.crop_icon);
+        edt_area = findViewById(R.id.edt_croparea);
+        edt_dist = findViewById(R.id.edt_district);
+        edt_growthdur = findViewById(R.id.growthdur);
+        edt_irrigation = findViewById(R.id.edt_irrigation);
+        edt_soil = findViewById(R.id.edt_soiltype);
+        edt_seasonal = findViewById(R.id.edt_season);
+        edt_tal = findViewById(R.id.edt_taluka);
+        edt_corptype = findViewById(R.id.edt_corptype);
+        edt_village = findViewById(R.id.edt_village);
+        edt_state = findViewById(R.id.edt_state);
 
     }
+
     public boolean hasPermissionInManifest(Context context, String permissionName) {
         final String packageName = context.getPackageName();
         try {
@@ -348,7 +332,8 @@ public class AddFormData extends AppCompatActivity {
                 }
             }
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace(); }
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -371,32 +356,32 @@ public class AddFormData extends AppCompatActivity {
     }
 
     public void onSubmit(View view) {
-         season=edt_seasonal.getText().toString();
-         irrigation=edt_irrigation.getText().toString();
-         soil=edt_soil.getText().toString();
-         growthdur=edt_growthdur.getText().toString();
-         area=edt_area.getText().toString();
-         village=edt_village.getText().toString();
-         taluka=edt_tal.getText().toString();
-         district=edt_dist.getText().toString();
-         state=edt_state.getText().toString();
-                croptype=edt_corptype.getText().toString();
-                userid=FeatureController.getInstance().getUserDetail().get(0).getId();
+        season = edt_seasonal.getText().toString();
+        irrigation = edt_irrigation.getText().toString();
+        soil = edt_soil.getText().toString();
+        growthdur = edt_growthdur.getText().toString();
+        area = edt_area.getText().toString();
+        village = edt_village.getText().toString();
+        taluka = edt_tal.getText().toString();
+        district = edt_dist.getText().toString();
+        state = edt_state.getText().toString();
+        croptype = edt_corptype.getText().toString();
+        userid = FeatureController.getInstance().getUserDetail().get(0).getId();
         submitdata();
 
 
     }
 
     private void submitdata() {
-        AuthenticationApi api= ApiClient.getClient().create(AuthenticationApi.class);
-        AddFormDataInput i=new AddFormDataInput();
+        AuthenticationApi api = ApiClient.getClient().create(AuthenticationApi.class);
+        AddFormDataInput i = new AddFormDataInput();
         i.setOperation("form_data_added");
         i.setApiKey("cda11aoip2Ry07CGWmjEqYvPguMZTkBel1V8c3XKIxwA6zQt5s");
         i.setGiolocation("");
         i.setTime("");
-        String cropimg=getBase64(bm);
+        String cropimg = getBase64(bm);
         i.setCropImage(cropimg);
-        String soilimg=getBase64(bm1);
+        String soilimg = getBase64(bm1);
         i.setSoilImage(soilimg);
         i.setSessionalCondition(season);
         i.setIrrigationType(irrigation);
@@ -409,20 +394,19 @@ public class AddFormData extends AppCompatActivity {
         i.setDistrict(district);
         i.setState(state);
         i.setUserId(userid);
-        Call<AddFormDatatOutput> call=api.sendData(i);
+        Call<AddFormDatatOutput> call = api.sendData(i);
         call.enqueue(new Callback<AddFormDatatOutput>() {
             @Override
             public void onResponse(Call<AddFormDatatOutput> call, Response<AddFormDatatOutput> response) {
-                if (response.body()!=null){
-                    if (response.body().getResponseStatus()==200){
-                        Toast.makeText(AddFormData.this,"Data Uploded Sucessfully .  "+response.body().getResponseMessage().toString(),Toast.LENGTH_LONG).show();
-                    }
-                    else {
-                        Toast.makeText(AddFormData.this,response.body().getResponseMessage().toString(),Toast.LENGTH_LONG).show();
+                if (response.body() != null) {
+                    if (response.body().getResponseStatus() == 200) {
+                        Toast.makeText(AddFormData.this, "Data Uploded Sucessfully .  " + response.body().getResponseMessage(), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(AddFormData.this, response.body().getResponseMessage(), Toast.LENGTH_LONG).show();
 
                     }
-                }else {
-                    Toast.makeText(AddFormData.this,"Server Error!!!!!!!"+response.body().getResponseMessage().toString(),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(AddFormData.this, "Server Error!!!!!!!" + response.body().getResponseMessage(), Toast.LENGTH_LONG).show();
 
                 }
             }

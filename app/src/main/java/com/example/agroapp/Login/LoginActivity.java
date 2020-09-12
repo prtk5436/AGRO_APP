@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import com.example.agroapp.ForgotPassword.ForgotPasswordInput;
 import com.example.agroapp.ForgotPassword.ForgotPasswordOutput;
 import com.example.agroapp.R;
 import com.example.agroapp.Registration.RegistrationActivity;
+import com.example.agroapp.Util.CommonFunctions;
 import com.scwang.wave.MultiWaveHeader;
 
 import retrofit2.Call;
@@ -30,6 +32,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String mobileNumber = "mobileNumber";
+    public static final String pwd = "password";
+    private static final String TAG = "LoginActivity";
     MultiWaveHeader header, footer;
     EditText edtUsername, edtPassword, et_mob;
     String username, password, str_mob = "";
@@ -38,13 +43,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView txt_signup, tv_forgotPWD;
     ProgressBar prog;
     LinearLayout l1, l2, l3;
-
-    private String isLoggedIn = "false";
-    public static final String mobileNumber = "mobileNumber";
-    public static final String pwd = "password";
-    private SharedPreferences sharedpreferences;
     UserDetail userDetail;
     Context context;
+    private String isLoggedIn = "false";
+    private SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +137,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void Login() {
+        Log.d(TAG, "Login: username = " + username);
+        Log.d(TAG, "Login: password = " + password);
         AuthenticationApi authenticationApi = ApiClient.getClient().create(AuthenticationApi.class);
         LoginInput i = new LoginInput();
         i.setOperation("user_login");
@@ -147,10 +151,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         call.enqueue(new Callback<LoginOutput>() {
             @Override
             public void onResponse(Call<LoginOutput> call, Response<LoginOutput> response) {
+
+                String error_desc = response.body().getResponseMessage();
                 if (response.body() != null) {
                     if (response.body().getResponseStatus() == 200) {
                         userDetail = response.body().getUserDetails().get(0);
                         FeatureController.getInstance().setUserdetails(userDetail);
+                        Toast.makeText(LoginActivity.this, "Login Sucessfully", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(LoginActivity.this, AddFormData.class));
                         finish();
                     } else {
@@ -158,13 +165,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         btnlogin.setVisibility(View.VISIBLE);
                         l1.setVisibility(View.VISIBLE);
                         Toast.makeText(LoginActivity.this, response.body().getResponseMessage(), Toast.LENGTH_LONG).show();
+                        String apiname = "core/Version3/login_student_V4.php";
+                        CommonFunctions.errorLog("AgroTech", "login credentials error", "user cannot login", "login failed", "", "", "", "", "", "", "Aniket and Pramod khandare", apiname, "login.php", error_desc, "");
+
                     }
 
                 } else {
                     prog.setVisibility(View.GONE);
                     btnlogin.setVisibility(View.VISIBLE);
                     l1.setVisibility(View.VISIBLE);
-                    Toast.makeText(LoginActivity.this, "Server Error...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Server Error..." + error_desc, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -177,12 +187,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, "Server Error..." + t, Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     private void getNewPassword() {
         str_mob = et_mob.getText().toString();
-        if (str_mob.isEmpty() || str_mob.length() != 10) {
+        if (str_mob.length() != 10) {
             et_mob.setError("please enter valid mobile no.");
         } else {
             btn_get_pwd.setVisibility(View.GONE);
