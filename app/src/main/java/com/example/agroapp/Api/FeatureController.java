@@ -12,6 +12,16 @@ public class FeatureController {
 
     List<UserDetail> userDetail;
     String permission = "";
+    public String Uid="";
+
+    public String getUid() {
+        return Uid;
+    }
+
+    public void setUid(String uid) {
+        Uid = uid;
+    }
+
     String Model;
 
     public static FeatureController getController() {
