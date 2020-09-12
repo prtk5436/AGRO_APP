@@ -16,6 +16,7 @@ import com.example.agroapp.Api.ApiClient;
 import com.example.agroapp.Api.AuthenticationApi;
 import com.example.agroapp.Login.LoginActivity;
 import com.example.agroapp.R;
+import com.example.agroapp.Util.CommonFunctions;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,7 +83,7 @@ public class RegistrationActivity extends AppCompatActivity {
         str_pin = pin.getText().toString();
         str_lati = lati.getText().toString();
         str_logi = logi.getText().toString();
-        if (str_username.equals("") || str_full_name.equals("") || str_email.equals("") || str_str_pass.equals("") || str_phone.length()!=10
+        if (str_username.equals("") || str_full_name.equals("") || str_email.equals("") || str_str_pass.equals("") || str_phone.length() != 10
                 || str_Vaddress.equals("") || str_Taddress.equals("") || str_district.equals("") || str_state.equals("") || str_country.equals("") || str_pin.equals("")) {
             Toast.makeText(RegistrationActivity.this, "Please enter all valid details", Toast.LENGTH_LONG).show();
         } else {
@@ -117,14 +118,19 @@ public class RegistrationActivity extends AppCompatActivity {
         call.enqueue(new Callback<RegistrationOutput>() {
             @Override
             public void onResponse(Call<RegistrationOutput> call, Response<RegistrationOutput> response) {
+
+                String error_desc = response.body().getResponceMessage();
                 if (response.body() != null) {
                     if (response.body().getResponsestatus() == 200) {
                         Toast.makeText(RegistrationActivity.this, "User Registred sucessfully", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                        finish();
                     } else {
                         prog.setVisibility(View.GONE);
                         l2.setVisibility(View.VISIBLE);
-                        Toast.makeText(RegistrationActivity.this, response.body().getResponceMessage().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrationActivity.this, response.body().getResponceMessage(), Toast.LENGTH_LONG).show();
+                        String apiname = "core/Version3/login_student_V4.php";
+                        CommonFunctions.errorLog("AgroTech", "Registration credentials error", "user cannot registered", "Registration failed", "", "", str_full_name, "", "", "", "Aniket and Pramod khandare", apiname, "login.php", error_desc, "");
                     }
                 }
             }

@@ -32,6 +32,13 @@ public class FeatureController {
         FeatureController.controller = controller;
     }
 
+    public static FeatureController getInstance() {
+        if (controller == null) {
+            controller = new FeatureController();
+        }
+        return controller;
+    }
+
     public UserDetail getUserdetails() {
         return userdetails;
     }
@@ -43,19 +50,11 @@ public class FeatureController {
     public List<UserDetail> getUserDetail() {
         return userDetail;
     }
+    // public MrDetails mrDetails;
 
     public void setUserDetail(List<UserDetail> userDetail) {
         this.userDetail = userDetail;
     }
-    // public MrDetails mrDetails;
-
-    public static FeatureController getInstance() {
-        if (controller == null) {
-            controller = new FeatureController();
-        }
-        return controller;
-    }
-
 
     public String getModel() {
         return Model;
@@ -72,7 +71,6 @@ public class FeatureController {
     public void setPermission(String permission) {
         this.permission = permission;
     }
-
 
 
 }
